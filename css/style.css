@@ -1,0 +1,16 @@
+.light {
+    width: 100px;
+    height: 100px;
+}
+
+.light.red {
+    background-color: red;
+}
+
+.light.yellow {
+    background-color: yellow;
+}
+
+.light.green {
+    background-color: green;
+}
