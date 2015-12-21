@@ -74,6 +74,7 @@ $(document).ready(function () {
 
     $('body').keyup(function (e) {
         var pressedKey = e.which;
+        $(this).find('.start').remove();
 
         /*
          * Emergency break by pressing [SPACE]
