@@ -79,7 +79,9 @@ $(document).ready(function () {
          * Emergency break by pressing [SPACE]
          */
         if (pressedKey === 32) {
-            clearInterval(currentPhase);
+            if (typeof currentPhase !== 'undefined') {
+                clearInterval(currentPhase);
+            }
             clearLight(light);
             light.addClass('red');
             light.find('.info').text('STOP!');
@@ -91,6 +93,10 @@ $(document).ready(function () {
         if (pressedKey === 13) {
             if (gameProcess === 0) {
                 console.log('no game startet!');
+                if (typeof currentPhase !== 'undefined') {
+                    clearInterval(currentPhase);
+                }
+                clearLight(light);
                 startGame(light);
             } else {
                 console.log('game in process!');
