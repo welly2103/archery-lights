@@ -19,9 +19,10 @@ function clearLight(light) {
 function startGame(light) {
     clearLight(light);
     var timer = prepareDuration;
+    playHorn();
     light.addClass('red');
     light.find('.counter').text(timer);
-    currentPhase = setInterval(function () {
+    currentPhase = setInterval(function() {
         if (timer > 1) {
             timer--;
             light.find('.counter').text(timer);
@@ -35,9 +36,10 @@ function startGame(light) {
 function startMainPhase(light) {
     clearLight(light);
     var timer = shootDuration;
+    playHorn();
     light.addClass('green');
     light.find('.counter').text(timer);
-    currentPhase = setInterval(function () {
+    currentPhase = setInterval(function() {
         if (timer > finalDuration + 1) {
             timer--;
             light.find('.counter').text(timer);
@@ -51,9 +53,10 @@ function startMainPhase(light) {
 function startEndPhase(light) {
     clearLight(light);
     var timer = finalDuration;
+    playHorn();
     light.addClass('yellow');
     light.find('.counter').text(timer);
-    currentPhase = setInterval(function () {
+    currentPhase = setInterval(function() {
         if (timer > 1) {
             timer--;
             light.find('.counter').text(timer);
@@ -69,10 +72,29 @@ function stopGame(light) {
     light.addClass('red');
 }
 
-$(document).ready(function () {
+function playHorn(repeat) {
+    var audio = document.createElement('audio');
+    audio.setAttribute('src', 'mp3/air_horn.mp3');
+    audio.setAttribute('autoplay', 'autoplay');
+    if (repeat > 1) {
+        var counter = 0;
+        var playSoundInRepeat = setInterval(function() {
+            if (counter === 2) {
+                clearInterval(playSoundInRepeat);
+            } else {
+                audio.play();
+            }
+            counter++;
+        }, 2500);
+    } else {
+        audio.play();
+    }
+}
+
+$(document).ready(function() {
     var light = $(this).find('.light');
 
-    $('body').keyup(function (e) {
+    $('body').keyup(function(e) {
         var pressedKey = e.which;
         $(this).find('.start').remove();
 
@@ -84,6 +106,7 @@ $(document).ready(function () {
                 clearInterval(currentPhase);
             }
             clearLight(light);
+            playHorn(3)
             light.addClass('red');
             light.find('.info').text('STOP!');
         }
@@ -100,7 +123,7 @@ $(document).ready(function () {
                 clearLight(light);
                 startGame(light);
             } else {
-                console.log('game in process!');
+                // Do nothing
             }
         }
     });

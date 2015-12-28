@@ -14,3 +14,10 @@ window.prepareDuration = 10; // Time while the light is red
 window.shootDuration = 120; // Light is green and you can shoot
 window.finalDuration = 30; // Light is yellow after 90 seconds of the shoot duration
 ```
+
+## Sound licence
+Airhorn sound is taken from [soundbible.com] recorded by Mike Koenig
+Attribution 3.0 [creativecommons]
+
+[soundbible.com]: <http://soundbible.com/1542-Air-Horn.html>
+[creativecommons]: <https://creativecommons.org/licenses/by/3.0/>
